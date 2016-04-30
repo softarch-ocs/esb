@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="PostulateEmployee" targetNamespace="http://j2ee.netbeans.org/wsdl/esb/src/PostulateEmployee"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/esb/src/PostulateEmployee" xmlns:ns="http://services/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/esb/src/PostulateEmployee">
+            <xsd:import namespace="http://services/" schemaLocation="http://localhost:28080/interop-mock/PostulateEmployee?xsd=1"/>
+        </xsd:schema>
+    </types>
+    <message name="PostulateEmployeeOperationRequest">
+        <part name="request" type="ns:postulateEmployeeRequestDto"/>
+    </message>
+    <message name="PostulateEmployeeOperationResponse">
+        <part name="response" type="ns:postulateEmployeeResponseDto"/>
+    </message>
+    <portType name="PostulateEmployeePortType">
+        <operation name="PostulateEmployeeOperation">
+            <input name="input1" message="tns:PostulateEmployeeOperationRequest"/>
+            <output name="output1" message="tns:PostulateEmployeeOperationResponse"/>
+        </operation>
+    </portType>
+    <binding name="PostulateEmployeeBinding" type="tns:PostulateEmployeePortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="PostulateEmployeeOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/esb/src/PostulateEmployee"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/esb/src/PostulateEmployee"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="PostulateEmployeeService">
+        <port name="PostulateEmployeePort" binding="tns:PostulateEmployeeBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/PostulateEmployeeService/PostulateEmployeePort"/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="PostulateEmployee">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="PostulateEmployeePortTypeRole" portType="tns:PostulateEmployeePortType"/>
+    </plnk:partnerLinkType>
+</definitions>

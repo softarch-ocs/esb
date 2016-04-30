@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://services/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://services/">
+
+<xs:element name="verifyEmployees" type="tns:verifyEmployees"/>
+
+<xs:element name="verifyEmployeesResponse" type="tns:verifyEmployeesResponse"/>
+
+<xs:complexType name="verifyEmployees">
+<xs:sequence>
+<xs:element name="request" type="tns:verifyEmployeesStatusRequestDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="verifyEmployeesStatusRequestDto">
+<xs:sequence>
+<xs:element name="employees" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="verifyEmployeesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:verifyEmployeesStatusResponseDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="verifyEmployeesStatusResponseDto">
+<xs:sequence>
+<xs:element name="results" type="tns:resultDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="resultDto">
+<xs:sequence>
+<xs:element name="document" type="xs:string" minOccurs="0"/>
+<xs:element name="tests" type="tns:testResultDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="testResultDto">
+<xs:sequence>
+<xs:element name="comment" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="status" type="tns:status" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="status">
+<xs:restriction base="xs:string">
+<xs:enumeration value="PASS"/>
+<xs:enumeration value="FAIL"/>
+<xs:enumeration value="PENDING"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

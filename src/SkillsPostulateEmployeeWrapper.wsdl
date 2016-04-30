@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SkillsPostulateEmployeeWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/SkillsPostulateEmployeeWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/SkillsPostulateEmployeeWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://services/">
+    <import location="http://localhost:28080/interop-mock/PostulateEmployee?wsdl" namespace="http://services/"/>
+    <plnk:partnerLinkType name="PostulateEmployeeLinkType">
+        <plnk:role name="SkillsPostulateEmployeeRole" portType="ns:PostulateEmployee"/>
+    </plnk:partnerLinkType>
+</definitions>
