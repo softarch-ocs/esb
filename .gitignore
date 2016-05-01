@@ -16,3 +16,5 @@ out/
 nbproject/private/
 build/
 dist/
+/CompositeApp1/nbproject/private/
+/CompositeApp1/src/jbiServiceUnits/
