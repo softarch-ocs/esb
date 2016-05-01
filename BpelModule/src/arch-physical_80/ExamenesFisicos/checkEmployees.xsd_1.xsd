@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://Service.BusinessLogic/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://Service.BusinessLogic/">
+
+<xs:element name="check" type="tns:check"/>
+
+<xs:element name="checkResponse" type="tns:checkResponse"/>
+
+<xs:complexType name="check">
+<xs:sequence>
+<xs:element name="listEmployees" type="tns:listEmployeesDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listEmployeesDTO">
+<xs:sequence>
+<xs:element name="employees" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="checkResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:employeeStatusDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="employeeStatusDTO">
+<xs:sequence>
+<xs:element name="results" type="tns:pacienteDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pacienteDTO">
+<xs:sequence>
+<xs:element name="document" type="xs:string" minOccurs="0"/>
+<xs:element name="tests" type="tns:test" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="test">
+<xs:sequence>
+<xs:element name="comment" type="xs:string" minOccurs="0"/>
+<xs:element name="criteria" type="xs:string" minOccurs="0"/>
+<xs:element name="date" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="diagnostic" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="status" type="tns:status" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="status">
+<xs:restriction base="xs:string">
+<xs:enumeration value="PASS"/>
+<xs:enumeration value="FAIL"/>
+<xs:enumeration value="PENDING"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

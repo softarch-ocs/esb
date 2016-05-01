@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <nextCatalog catalog="nbproject/private/retriever/catalog.xml"/>
+    <system systemId="http://arch-physical/ExamenesFisicos/checkEmployees?wsdl" uri="src/arch-physical/ExamenesFisicos/checkEmployees.wsdl"/>
+    <system systemId="http://arch-physical:80/ExamenesFisicos/checkEmployees?xsd=1" uri="src/arch-physical_80/ExamenesFisicos/checkEmployees.xsd_1.xsd"/>
 </catalog>
