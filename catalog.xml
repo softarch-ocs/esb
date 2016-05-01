@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <nextCatalog catalog="nbproject/private/retriever/catalog.xml"/>
-    <system systemId="http://localhost:30687/interop-mock/VerifyEmployeesStatus?wsdl" uri="src/localhost_30687/interop-mock/VerifyEmployeesStatus.wsdl"/>
-    <system systemId="http://localhost:30687/interop-mock/VerifyEmployeesStatus?xsd=1" uri="src/localhost_30687/interop-mock/VerifyEmployeesStatus.xsd_1.xsd"/>
-    <system systemId="http://localhost:30687/interop-mock/PostulateEmployee?wsdl" uri="src/localhost_30687/interop-mock/PostulateEmployee.wsdl"/>
-    <system systemId="http://localhost:30687/interop-mock/PostulateEmployee?xsd=1" uri="src/localhost_30687/interop-mock/PostulateEmployee.xsd_1.xsd"/>
-</catalog>
