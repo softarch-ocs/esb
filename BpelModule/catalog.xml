@@ -5,4 +5,8 @@
     <system systemId="http://arch-physical:80/ExamenesFisicos/checkEmployees?xsd=1" uri="src/arch-physical_80/ExamenesFisicos/checkEmployees.xsd_1.xsd"/>
     <system systemId="http://arch-skills/examsUnal/VerifyEmployeesStatus?wsdl" uri="src/arch-skills/examsUnal/VerifyEmployeesStatus.wsdl"/>
     <system systemId="http://arch-skills:80/examsUnal/VerifyEmployeesStatus?xsd=1" uri="src/arch-skills_80/examsUnal/VerifyEmployeesStatus.xsd_1.xsd"/>
+    <system systemId="http://arch-physical/ExamenesFisicos/PostulateEmployee?wsdl" uri="src/arch-physical/ExamenesFisicos/PostulateEmployee.wsdl"/>
+    <system systemId="http://arch-physical:80/ExamenesFisicos/PostulateEmployee?xsd=1" uri="src/arch-physical_80/ExamenesFisicos/PostulateEmployee.xsd_1.xsd"/>
+    <system systemId="http://arch-skills/examsUnal/PostulateEmployee?wsdl" uri="src/arch-skills/examsUnal/PostulateEmployee.wsdl"/>
+    <system systemId="http://arch-skills:80/examsUnal/PostulateEmployee?xsd=1" uri="src/arch-skills_80/examsUnal/PostulateEmployee.xsd_1.xsd"/>
 </catalog>
