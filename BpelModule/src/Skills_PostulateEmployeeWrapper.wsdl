@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Skills_PostulateEmployeeWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/Skills_PostulateEmployeeWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/Skills_PostulateEmployeeWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://Service.BusinessLogic.examsUnal.unal.co/">
+    <import location="http://arch-skills/examsUnal/PostulateEmployee?wsdl" namespace="http://Service.BusinessLogic.examsUnal.unal.co/"/>
+    <plnk:partnerLinkType name="Skills_PostulateEmployeeLinkType">
+        <plnk:role name="Skills_PostulateEmployeeRole" portType="ns:PostulateEmployee"/>
+    </plnk:partnerLinkType>
+</definitions>

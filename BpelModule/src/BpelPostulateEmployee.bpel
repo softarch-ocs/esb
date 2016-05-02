@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<process
+    name="BpelPostulateEmployee"
+    targetNamespace="http://enterprise.netbeans.org/bpel/BpelModule/BpelPostulateEmployee"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/BpelModule/BpelPostulateEmployee"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
+    xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://xml.netbeans.org/schema/BpelPostulateEmployee">
+    <import namespace="http://enterprise.netbeans.org/bpel/Physical_PostulateEmployeeWrapper" location="Physical_PostulateEmployeeWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://Service.BusinessLogic/" location="http://arch-physical/ExamenesFisicos/PostulateEmployee?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://enterprise.netbeans.org/bpel/Skills_PostulateEmployeeWrapper" location="Skills_PostulateEmployeeWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://Service.BusinessLogic.examsUnal.unal.co/" location="http://arch-skills/examsUnal/PostulateEmployee?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BpelModule/src/BpelPostulateEmployee" location="BpelPostulateEmployee.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="PartnerLink1" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule/src/BpelPostulateEmployee" partnerLinkType="tns:BpelPostulateEmployee" myRole="BpelPostulateEmployeePortTypeRole"/>
+        <partnerLink name="Physical_PostulateEmployeePartnerLink" xmlns:tns="http://enterprise.netbeans.org/bpel/Physical_PostulateEmployeeWrapper" partnerLinkType="tns:Physical_PostulateEmployeeLinkType" partnerRole="Physical_PostulateEmployeeRole"/>
+        <partnerLink name="Skills_PostulateEmployeePartnerLink" xmlns:tns="http://enterprise.netbeans.org/bpel/Skills_PostulateEmployeeWrapper" partnerLinkType="tns:Skills_PostulateEmployeeLinkType" partnerRole="Skills_PostulateEmployeeRole"/>
+    </partnerLinks>
+    <variables>
+        <variable name="BpelPostulateEmployeeOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule/src/BpelPostulateEmployee" messageType="tns:BpelPostulateEmployeeOperationRequest"/>
+        <variable name="PhysicalPostulateOut" xmlns:tns="http://Service.BusinessLogic/" messageType="tns:PostulateResponse"/>
+        <variable name="PhysicalPostulateIn" xmlns:tns="http://Service.BusinessLogic/" messageType="tns:Postulate"/>
+        <variable name="SkillsPostulateOut" xmlns:tns="http://Service.BusinessLogic.examsUnal.unal.co/" messageType="tns:postulateResponse"/>
+        <variable name="SkillsPostulateIn" xmlns:tns="http://Service.BusinessLogic.examsUnal.unal.co/" messageType="tns:postulate"/>
+        <variable name="BpelPostulateEmployeeOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule/src/BpelPostulateEmployee" messageType="tns:BpelPostulateEmployeeOperationResponse"/>
+    </variables>
+    <sequence>
+        <receive name="ReceiveBpelRequest" createInstance="yes" partnerLink="PartnerLink1" operation="BpelPostulateEmployeeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule/src/BpelPostulateEmployee" portType="tns:BpelPostulateEmployeePortType" variable="BpelPostulateEmployeeOperationIn"/>
+        <flow name="Flow1">
+            <sequence name="FlowSequence">
+                <assign name="AssignSkillsParameters">
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:employee/ns0:document</from>
+                        <to>$SkillsPostulateIn.parameters/parameter/employee/document</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:employee/ns0:email</from>
+                        <to>$SkillsPostulateIn.parameters/parameter/employee/email</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:employee/ns0:firstName</from>
+                        <to>$SkillsPostulateIn.parameters/parameter/employee/firstName</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:employee/ns0:gender</from>
+                        <to>$SkillsPostulateIn.parameters/parameter/employee/gender</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:employee/ns0:lastName</from>
+                        <to>$SkillsPostulateIn.parameters/parameter/employee/lastName</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:features</from>
+                        <to>$SkillsPostulateIn.parameters/parameter/features</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:password</from>
+                        <to>$SkillsPostulateIn.parameters/parameter/password</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:userName</from>
+                        <to>$SkillsPostulateIn.parameters/parameter/userName</to>
+                    </copy>
+                </assign>
+                <invoke name="InvokeSkillsRequest" partnerLink="Skills_PostulateEmployeePartnerLink" operation="postulate" xmlns:tns="http://Service.BusinessLogic.examsUnal.unal.co/" portType="tns:PostulateEmployee" inputVariable="SkillsPostulateIn" outputVariable="SkillsPostulateOut"/>
+            </sequence>
+            <sequence name="FlowSequence1">
+                <assign name="AssignPhysicalParameters">
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:employee/ns0:document</from>
+                        <to>$PhysicalPostulateIn.parameters/employeeDTO/employee/document</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:employee/ns0:firstName</from>
+                        <to>$PhysicalPostulateIn.parameters/employeeDTO/employee/firstName</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:employee/ns0:lastName</from>
+                        <to>$PhysicalPostulateIn.parameters/employeeDTO/employee/lastName</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:password</from>
+                        <to>$PhysicalPostulateIn.parameters/employeeDTO/password</to>
+                    </copy>
+                    <copy>
+                        <from>$BpelPostulateEmployeeOperationIn.request/ns0:userName</from>
+                        <to>$PhysicalPostulateIn.parameters/employeeDTO/userName</to>
+                    </copy>
+                </assign>
+                <invoke name="InvokePhysicalRequest" partnerLink="Physical_PostulateEmployeePartnerLink" operation="Postulate" xmlns:tns="http://Service.BusinessLogic/" portType="tns:PostulateEmployee" inputVariable="PhysicalPostulateIn" outputVariable="PhysicalPostulateOut"/>
+            </sequence>
+        </flow>
+        <if name="IfBothSucceed">
+            <condition>$PhysicalPostulateOut.parameters/return/success and $SkillsPostulateOut.parameters/return/success</condition>
+            <assign name="AssignSuccess">
+                <copy>
+                    <from>true()</from>
+                    <to>$BpelPostulateEmployeeOperationOut.response/ns0:success</to>
+                </copy>
+            </assign>
+            <else>
+                <assign name="AssignFailure">
+                    <copy>
+                        <from>false()</from>
+                        <to>$BpelPostulateEmployeeOperationOut.response/ns0:success</to>
+                    </copy>
+                    <copy>
+                        <from>concat($PhysicalPostulateOut.parameters/return/errorMessage, ';', $SkillsPostulateOut.parameters/return/errorMessage)</from>
+                        <to>$BpelPostulateEmployeeOperationOut.response/ns0:errorMessage</to>
+                    </copy>
+                </assign>
+            </else>
+        </if>
+        <reply name="ReplyBpelRequest" partnerLink="PartnerLink1" operation="BpelPostulateEmployeeOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule/src/BpelPostulateEmployee" portType="tns:BpelPostulateEmployeePortType" variable="BpelPostulateEmployeeOperationOut"/>
+    </sequence>
+</process>

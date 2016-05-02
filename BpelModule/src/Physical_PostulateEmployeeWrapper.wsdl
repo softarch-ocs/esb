@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Physical_PostulateEmployeeWrapper" targetNamespace="http://enterprise.netbeans.org/bpel/Physical_PostulateEmployeeWrapper" xmlns:tns="http://enterprise.netbeans.org/bpel/Physical_PostulateEmployeeWrapper" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:ns="http://Service.BusinessLogic/">
+    <import location="http://arch-physical/ExamenesFisicos/PostulateEmployee?wsdl" namespace="http://Service.BusinessLogic/"/>
+    <plnk:partnerLinkType name="Physical_PostulateEmployeeLinkType">
+        <plnk:role name="Physical_PostulateEmployeeRole" portType="ns:PostulateEmployee"/>
+    </plnk:partnerLinkType>
+</definitions>
