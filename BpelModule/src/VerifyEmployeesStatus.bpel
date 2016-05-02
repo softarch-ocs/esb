@@ -10,7 +10,11 @@
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
     xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
     xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling">
-
-   <sequence>
+    <import namespace="http://enterprise.netbeans.org/bpel/checkEmployeesWrapper" location="checkEmployeesWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <import namespace="http://Service.BusinessLogic/" location="http://arch-physical/ExamenesFisicos/checkEmployees?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    <partnerLinks>
+        <partnerLink name="Physical_CheckEmployeesPartnerLink" xmlns:tns="http://enterprise.netbeans.org/bpel/checkEmployeesWrapper" partnerLinkType="tns:CheckPatientsLinkType" partnerRole="CheckPatientsRole"/>
+    </partnerLinks>
+    <sequence>
    </sequence>
 </process>
