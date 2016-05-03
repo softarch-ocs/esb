@@ -9,7 +9,7 @@
     xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2"
     xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
-    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://xml.netbeans.org/schema/BpelVerifyEmployeesStatus">
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling" xmlns:ns0="http://xml.netbeans.org/schema/BpelVerifyEmployeesStatus" xmlns:ns1="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
     <import namespace="http://enterprise.netbeans.org/bpel/checkEmployeesWrapper" location="checkEmployeesWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://Service.BusinessLogic/" location="http://arch-physical/ExamenesFisicos/checkEmployees?wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/VerifyEmployeesStatusWrapper" location="VerifyEmployeesStatusWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
@@ -39,6 +39,56 @@
                     </copy>
                 </assign>
                 <invoke name="InvokeSkillsRequest" partnerLink="Skills_VerifyPartnerLink" operation="verifyEmployees" xmlns:tns="http://Service.BusinessLogic.examsUnal.unal.co/" portType="tns:VerifyEmployeesStatus" inputVariable="SkillsVerifyEmployeesIn" outputVariable="SkillsVerifyEmployeesOut"/>
+                <forEach name="ForEachSkillResult" parallel="no" counterName="ResultIndex">
+                    <startCounterValue>1</startCounterValue>
+                    <finalCounterValue>count($SkillsVerifyEmployeesOut.parameters/return/results)</finalCounterValue>
+                    <scope name="ScopeSkillsResult">
+                        <sequence name="Sequence1">
+                            <assign name="AssignSkillsResult">
+                                <copy ignoreMissingFromData="yes">
+                                    <from>
+                                        $SkillsVerifyEmployeesOut.parameters/return/results[$ResultIndex]/document
+                                    </from>
+                                    <to>
+                                        $BpelVerifyEmployeesStatusOperationOut.response/ns0:skillResults[$ResultIndex]/ns0:document
+                                    </to>
+                                </copy>
+                            </assign>
+                            <forEach name="ForEachPhysicalResult" parallel="no" counterName="TestIndex">
+                                <startCounterValue>1</startCounterValue>
+                                <finalCounterValue>count($SkillsVerifyEmployeesOut.parameters/return/results[$ResultIndex]/tests)</finalCounterValue>
+                                <scope name="ScopePhysicalResultSkill">
+                                    <assign name="AssignPhysicalResultSkill">
+                                        <copy ignoreMissingFromData="yes">
+                                            <from>
+                                                $SkillsVerifyEmployeesOut.parameters/return/results[$ResultIndex]/tests[$TestIndex]/comment
+                                            </from>
+                                            <to>
+                                                $BpelVerifyEmployeesStatusOperationOut.response/ns0:skillResults[$ResultIndex]/ns0:tests[$TestIndex]/ns0:comment
+                                            </to>
+                                        </copy>
+                                        <copy ignoreMissingFromData="yes">
+                                            <from>
+                                                $SkillsVerifyEmployeesOut.parameters/return/results[$ResultIndex]/tests[$TestIndex]/name
+                                            </from>
+                                            <to>
+                                                $BpelVerifyEmployeesStatusOperationOut.response/ns0:skillResults[$ResultIndex]/ns0:tests[$TestIndex]/ns0:name
+                                            </to>
+                                        </copy>
+                                        <copy ignoreMissingFromData="yes">
+                                            <from>
+                                                $SkillsVerifyEmployeesOut.parameters/return/results[$ResultIndex]/tests[$TestIndex]/status
+                                            </from>
+                                            <to>
+                                                $BpelVerifyEmployeesStatusOperationOut.response/ns0:skillResults[$ResultIndex]/ns0:tests[$TestIndex]/ns0:status
+                                            </to>
+                                        </copy>
+                                    </assign>
+                                </scope>
+                            </forEach>
+                        </sequence>
+                    </scope>
+                </forEach>
             </sequence>
             <sequence name="FlowSequence1">
                 <assign name="AssignPhysicalParameters">
@@ -48,38 +98,58 @@
                     </copy>
                 </assign>
                 <invoke name="InvokePhysicalRequest" partnerLink="Physical_CheckEmployeesPartnerLink" operation="check" xmlns:tns="http://Service.BusinessLogic/" portType="tns:CheckPatients" inputVariable="PhysicalCheckIn" outputVariable="PhysicalCheckOut"/>
+                <forEach name="ForEachPhysicalResult" parallel="no" counterName="ResultIndex">
+                    <startCounterValue>1</startCounterValue>
+                    <finalCounterValue>count($PhysicalCheckOut.parameters/return/results)</finalCounterValue>
+                    <scope name="ScopePhysicalResult">
+                        <sequence name="Sequence1">
+                            <assign name="AssignPhysicalResult">
+                                <copy ignoreMissingFromData="yes">
+                                    <from>
+                                        $PhysicalCheckOut.parameters/return/results[$ResultIndex]/document
+                                    </from>
+                                    <to>
+                                        $BpelVerifyEmployeesStatusOperationOut.response/ns0:physicalResults[$ResultIndex]/ns0:document
+                                    </to>
+                                </copy>
+                            </assign>
+                            <forEach name="ForEachPhysicalResult" parallel="no" counterName="TestIndex">
+                                <startCounterValue>1</startCounterValue>
+                                <finalCounterValue>count($PhysicalCheckOut.parameters/return/results[$ResultIndex]/tests)</finalCounterValue>
+                                <scope name="ScopePhysicalResultSkill">
+                                    <assign name="AssignPhysicalResultSkill">
+                                        <copy ignoreMissingFromData="yes">
+                                            <from>
+                                                $PhysicalCheckOut.parameters/return/results[$ResultIndex]/tests[$TestIndex]/comment
+                                            </from>
+                                            <to>
+                                                $BpelVerifyEmployeesStatusOperationOut.response/ns0:physicalResults[$ResultIndex]/ns0:tests[$TestIndex]/ns0:comment
+                                            </to>
+                                        </copy>
+                                        <copy ignoreMissingFromData="yes">
+                                            <from>
+                                                $PhysicalCheckOut.parameters/return/results[$ResultIndex]/tests[$TestIndex]/name
+                                            </from>
+                                            <to>
+                                                $BpelVerifyEmployeesStatusOperationOut.response/ns0:physicalResults[$ResultIndex]/ns0:tests[$TestIndex]/ns0:name
+                                            </to>
+                                        </copy>
+                                        <copy ignoreMissingFromData="yes">
+                                            <from>
+                                                $PhysicalCheckOut.parameters/return/results[$ResultIndex]/tests[$TestIndex]/status
+                                            </from>
+                                            <to>
+                                                $BpelVerifyEmployeesStatusOperationOut.response/ns0:physicalResults[$ResultIndex]/ns0:tests[$TestIndex]/ns0:status
+                                            </to>
+                                        </copy>
+                                    </assign>
+                                </scope>
+                            </forEach>
+                        </sequence>
+                    </scope>
+                </forEach>
             </sequence>
         </flow>
-        <assign name="AssignBpelResponse">
-            <copy ignoreMissingFromData="yes">
-                <from>$SkillsVerifyEmployeesOut.parameters/return/results/document</from>
-                <to>$BpelVerifyEmployeesStatusOperationOut.response/ns0:skillResults/ns0:document</to>
-            </copy>
-            <copy ignoreMissingFromData="yes">
-                <from>$SkillsVerifyEmployeesOut.parameters/return/results/tests/comment</from>
-                <to>$BpelVerifyEmployeesStatusOperationOut.response/ns0:skillResults/ns0:tests/ns0:comment</to>
-            </copy>
-            <copy ignoreMissingFromData="yes">
-                <from>$SkillsVerifyEmployeesOut.parameters/return/results/tests/name</from>
-                <to>$BpelVerifyEmployeesStatusOperationOut.response/ns0:skillResults/ns0:tests/ns0:name</to>
-            </copy>
-            <copy ignoreMissingFromData="yes">
-                <from>$PhysicalCheckOut.parameters/return/results/document</from>
-                <to>$BpelVerifyEmployeesStatusOperationOut.response/ns0:physicalResults/ns0:document</to>
-            </copy>
-            <copy ignoreMissingFromData="yes">
-                <from>$PhysicalCheckOut.parameters/return/results/tests/name</from>
-                <to>$BpelVerifyEmployeesStatusOperationOut.response/ns0:physicalResults/ns0:tests/ns0:name</to>
-            </copy>
-            <copy ignoreMissingFromData="yes">
-                <from>$PhysicalCheckOut.parameters/return/results/tests/status</from>
-                <to>$BpelVerifyEmployeesStatusOperationOut.response/ns0:physicalResults/ns0:tests/ns0:status</to>
-            </copy>
-            <copy ignoreMissingFromData="yes">
-                <from>$SkillsVerifyEmployeesOut.parameters/return/results/tests/status</from>
-                <to>$BpelVerifyEmployeesStatusOperationOut.response/ns0:skillResults/ns0:tests/ns0:status</to>
-            </copy>
-        </assign>
         <reply name="ReplyBpelRequest" partnerLink="PartnerLink1" operation="BpelVerifyEmployeesStatusOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BpelModule/src/BpelVerifyEmployeesStatus" portType="tns:BpelVerifyEmployeesStatusPortType" variable="BpelVerifyEmployeesStatusOperationOut"/>
     </sequence>
 </process>
