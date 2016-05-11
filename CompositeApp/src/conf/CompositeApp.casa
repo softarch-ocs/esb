@@ -15,7 +15,7 @@
         <endpoint display-name="Skills_VerifyPartnerLink" endpoint-name="VerifyEmployeesStatusRole_partnerRole" file-path="VerifyEmployeesStatus.bpel" interface-name="ns2:VerifyEmployeesStatus" name="endpoint12" process-name="VerifyEmployeesStatus" service-name="ns6:Skills_VerifyPartnerLink"/>
     </endpoints>
     <service-units>
-        <service-engine-service-unit artifacts-zip="BpelModule.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="CompositeApp-BpelModule" unit-name="BpelModule" unknown="false" x="113" y="97">
+        <service-engine-service-unit artifacts-zip="BpelModule.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="CompositeApp-BpelModule" unit-name="BpelModule" unknown="false" x="108" y="97">
             <provides endpoint="endpoint7"/>
             <provides endpoint="endpoint8"/>
             <consumes endpoint="endpoint9"/>
@@ -25,32 +25,32 @@
         </service-engine-service-unit>
         <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="CompositeApp-sun-http-binding" unit-name="sun-http-binding">
             <ports>
-                <port x="67" y="191">
+                <port x="67" y="422">
                     <link xlink:href="../jbiServiceUnits/BpelModule/arch-physical/ExamenesFisicos/checkEmployees.wsdl#xpointer(/definitions/service[@name='checkEmployees']/port[@name='CheckPatientsPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint1"/>
                     <provides endpoint="endpoint1"/>
                 </port>
-                <port x="0" y="-1">
+                <port x="67" y="191">
                     <link xlink:href="../jbiServiceUnits/BpelModule/arch-physical/ExamenesFisicos/PostulateEmployee.wsdl#xpointer(/definitions/service[@name='PostulateEmployee']/port[@name='PostulateEmployeePort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint4"/>
                     <provides endpoint="endpoint4"/>
                 </port>
-                <port x="0" y="-1">
+                <port x="67" y="114">
                     <link xlink:href="../jbiServiceUnits/BpelModule/arch-skills/examsUnal/PostulateEmployee.wsdl#xpointer(/definitions/service[@name='PostulateEmployee']/port[@name='PostulateEmployeePort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint5"/>
                     <provides endpoint="endpoint5"/>
                 </port>
-                <port x="67" y="114">
+                <port x="67" y="345">
                     <link xlink:href="../jbiServiceUnits/BpelModule/arch-skills/examsUnal/VerifyEmployeesStatus.wsdl#xpointer(/definitions/service[@name='VerifyEmployeesStatus']/port[@name='VerifyEmployeesStatusPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint2"/>
                     <provides endpoint="endpoint2"/>
                 </port>
-                <port x="0" y="-1">
+                <port x="67" y="37">
                     <link xlink:href="../jbiServiceUnits/BpelModule/BpelPostulateEmployee.wsdl#xpointer(/definitions/service[@name='BpelPostulateEmployeeService']/port[@name='BpelPostulateEmployeePort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint6"/>
                     <provides endpoint="endpoint6"/>
                 </port>
-                <port x="67" y="37">
+                <port x="67" y="268">
                     <link xlink:href="../jbiServiceUnits/BpelModule/BpelVerifyEmployeesStatus.wsdl#xpointer(/definitions/service[@name='BpelVerifyEmployeesStatusService']/port[@name='BpelVerifyEmployeesStatusPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint3"/>
                     <provides endpoint="endpoint3"/>

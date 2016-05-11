@@ -53,15 +53,15 @@
                         <from>$BpelPostulateEmployeeOperationIn.request/ns0:employee/ns0:lastName</from>
                         <to>$SkillsPostulateIn.parameters/parameter/employee/lastName</to>
                     </copy>
-                    <copy>
+                    <copy ignoreMissingFromData="yes">
                         <from>$BpelPostulateEmployeeOperationIn.request/ns0:features</from>
                         <to>$SkillsPostulateIn.parameters/parameter/features</to>
                     </copy>
-                    <copy>
+                    <copy ignoreMissingFromData="yes">
                         <from>$BpelPostulateEmployeeOperationIn.request/ns0:password</from>
                         <to>$SkillsPostulateIn.parameters/parameter/password</to>
                     </copy>
-                    <copy>
+                    <copy ignoreMissingFromData="yes">
                         <from>$BpelPostulateEmployeeOperationIn.request/ns0:userName</from>
                         <to>$SkillsPostulateIn.parameters/parameter/userName</to>
                     </copy>
